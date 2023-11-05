@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Interface</title>
+  <link rel="stylesheet" href="form.css">
+</head>
+<body>
+  <!-- Animated Wave Background  -->
+  <div class="ocean">
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>
+<div class="container" id="container">
+  <div class="form-container">
+     <h1>Teacher Interface</h1>
+    <div class="instruction">
+      <p>To start taking the attendance</p>
+      <p><strong>Click below!</strong></p>
+    </div>
+    <div class="form-container">
+    <div class="button-container">
+      <button class="button-link" id="markAttendanceButton">Mark Attendance</button>
+    </div></div>
+    <div class="instruction">
+      <p>To view the attendance of students</p>
+      <p><strong>Click below!</strong></p>
+    </div>
+    <div class="form-container">
+    <div class="button-container">
+      <a href="{{ url_for('present') }}"class="button-link" >View Present Users</a>
+    </div></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        // Trigger real_time.py to mark attendance
+        $('#markAttendanceButton').click(function() {
+          $.post('/mark_attendance', function(data) {
+            alert(data); // Display a message when attendance is marked
+          });
+        });
+      });
+    </script>
+  </div>
+</body>
+</html>

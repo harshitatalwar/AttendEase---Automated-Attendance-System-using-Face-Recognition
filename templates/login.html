@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student login</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <!-- Animated Wave Background  -->
+    <div class="ocean">
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+    <!-- Log In Form Section -->
+    <section>
+        <div class="container" id="container">
+            <div class="form-container">
+        <form action="/login" method="post">
+            <input type="text" name="student_id_number" placeholder="Student ID Number" required><br><br>
+            <input type="password" name="password" placeholder="Password" required><br><br>
+            <button type="submit" class="button-link">Login</button>
+        </form>
+        </div></div>
+    </section>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flash">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    <script src="form.js"></script>
+</body>
+</html>

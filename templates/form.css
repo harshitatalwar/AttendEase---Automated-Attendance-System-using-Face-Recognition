@@ -1,0 +1,137 @@
+/* Animated Wave Background Style */
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0; 
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+}
+
+body {
+    background: radial-gradient(ellipse at center, rgba(255, 254, 234, 1) 0%, rgba(255, 254, 234, 1) 35%, #B7E8EB 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ocean {
+    height: 5%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #015871;
+}
+
+.wave {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x;
+    position: absolute;
+    top: -198px;
+    width: 6400px;
+    height: 198px;
+    animation: wave 11s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+    transform: translate3d(0, 0, 0);
+}
+
+.wave:nth-of-type(2) {
+    top: -175px;
+    animation: wave 17s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite, swell 7s ease -1.25s infinite;
+    opacity: 1;
+}
+
+@keyframes wave {
+    0% {
+        margin-left: 0;
+    }
+    100% {
+        margin-left: -1600px;
+    }
+}
+
+@keyframes swell {
+    0%, 100% {
+        transform: translate3d(0, -25px, 0);
+    }
+    50% {
+        transform: translate3d(0, 5px, 0);
+    }
+}
+
+.container {
+    background: #fff;
+    border-radius: 90px;
+    box-shadow: 30px 14px 28px rgba(0, 0, 5, .2), 0 10px 10px rgba(0, 0, 0, .2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    min-height: 480px;
+    position: relative;
+    overflow: hidden;
+    opacity: 85%;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    transition: 333ms;
+}
+
+.form-container {
+    padding: 20px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.button-link {
+    width: 70px;
+    height: 15px;
+    display: inline-block;
+    padding: 12px 45px;
+    border-radius: 50px;
+    box-shadow: 0 1px 1px;
+    border: 1px solid #008ecf;
+    background: #008ecf;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 80ms ease-in;
+    outline: none; 
+
+    &:hover {
+        transform: scale(0.95);
+    }
+}
+
+.button-link.ghost {
+    background: transparent;
+    border-color: #fff;
+}
+.instruction-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 70%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}

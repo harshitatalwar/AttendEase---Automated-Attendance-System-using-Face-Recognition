@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration</title>
+  <link rel="stylesheet" href="C:\Users\mandv\PycharmProjects\AutomatedAttendace\ProcterAI\student_registration_system\script.js">
+  <link rel="stylesheet" href="register.css">
+  <style>
+    #instruction-box {
+        display: none;
+    }
+
+    /* Add CSS for label and input alignment */
+    label {
+      display: inline-block;
+      width: 150px; /* Adjust the width as needed for proper alignment */
+      text-align: right;
+      margin-right: 10px;
+    }
+
+    input {
+      width: 250px; /* Adjust the width as needed for proper alignment */
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Wave Background  -->
+  <div class="ocean">
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>
+<!-- Log In Form Section -->
+<section>
+    <div class="container" id="container">
+        <div class="form-container">
+    <h1>Student Registration</h1>
+    <form id="registrationForm" action="/student" method="POST">
+
+      <label for="studentName">Name:</label>
+      <input type="text" id="studentName" name="studentName" required><br><br>
+
+      <label for="studentID">Student ID:</label>
+      <input type="text" id="studentID" name="studentID" required><br><br>
+
+      <label for="password">Password:</label>
+      <input type="text" id="password" name="password" required><br><br>
+
+        
+        <button id="instructionsButton" class="button-link">Instructions</button><br><br>
+    </form>
+
+
+
+    <div class="instruction-box" id="instruction-box">
+      <h2>Instructions:</h2>
+      
+          <p>Fill the details (your name, id, and password) first.</p>
+          <p>Click on 'Start Scan' button to start scanning your face.</p>
+          <p>Keep your face in front of the camera and sit in a well-lit room.</p>
+          <p>Press 's' to capture an image when your face is properly aligned.</li>
+          <p>For every next picture, move your face slightly to the left and right for different angles.</p>
+          <p>Make sure to capture 20 images in total for accurate recognition.</p>
+          <p>Once done, click on 'Finish' button</li>
+          <p>After getting the message "You are registered," click on 'Save Student' button</p>
+          <!-- Add more instructions as needed -->
+      
+      <span class="close-button" id="close-button">x</span>
+  </div>
+
+<!--        <video id="video" width="640" height="80" autoplay></video>-->
+        <button id="runTrainingButton" class="button-link">Store 20 images</button><br>
+        <button id="finishScan" class="button-link">Finish</button><br>
+        <button id="saveButton" type="submit" class="button-link">Save Student Info</button>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+        $(document).ready(function() {
+            $('#runTrainingButton').click(function() {
+                $.post('/run_training', function(data) {
+                    alert(data); // Display a message when the script has executed
+                });
+            });
+        });
+        </script>
+        
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+        $(document).ready(function() {
+            $('#finishScan').click(function() {
+                $.post('/finish', function(data) {
+                    alert(data); // Display a message when the script has executed
+                });
+            });
+        });
+        </script>
+
+
+  </div>
+
+<script src="C:\Users\mandv\PycharmProjects\AutomatedAttendace\ProcterAI\student_registration_system\script.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const instructionsButton = document.getElementById("instructionsButton");
+      const instructionBox = document.getElementById("instruction-box");
+      const closeButton = document.getElementById("close-button");
+
+      instructionsButton.addEventListener("click", function () {
+          instructionBox.style.display = "block";
+      });
+
+      closeButton.addEventListener("click", function () {
+          instructionBox.style.display = "none";
+      });
+  });
+</script>
+
+
+</body>
+</html>

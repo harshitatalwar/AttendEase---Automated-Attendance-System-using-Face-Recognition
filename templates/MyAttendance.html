@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Attendance</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <!-- Animated Wave Background  -->
+    <div class="ocean">
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+    <!-- Log In Form Section -->
+    <section>
+        <div class="container" id="container">
+            <div class="form-container">
+    <h1>My Attendance</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Student Name</th>
+            <th>Student ID Number</th>
+            <th>Recognition Date</th>
+            <th>Recognition Time</th>
+        </tr>
+        {% for user in student_data %}
+        <tr>
+            <td>{{ user[0] }}</td>
+            <td>{{ user[1] }}</td>
+            <td>{{ user[2] }}</td>
+            <td>{{ user[3] }}</td>
+            <td>{{ user[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+     <button onclick="downloadTableAsCSV()" class="button-link">Download as CSV</button>
+
+    <script>
+        function downloadTableAsCSV() {
+            const table = document.querySelector('table');
+            let csv = [];
+            const rows = table.querySelectorAll('tr');
+            for (let i = 0; i < rows.length; i++) {
+                const row = [], cols = rows[i].querySelectorAll('td, th');
+                for (let j = 0; j < cols.length; j++) {
+                    row.push(cols[j].innerText);
+                }
+                csv.push(row.join(','));
+            }
+            downloadCSV(csv.join('\n'), 'attendance_data.csv');
+        }
+
+        function downloadCSV(csv, filename) {
+            const csvFile = new Blob([csv], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(csvFile);
+            link.download = filename;
+            link.click();
+        }
+    </script>
+</body>
+</html>
